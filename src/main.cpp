@@ -1,3 +1,7 @@
+/*
+Developed by Ghana Nazala, Athina Maria, Achmad Kripton, Muhammad Fadli
+*/
+
 #include <Arduino.h>
 
 void setup() {
