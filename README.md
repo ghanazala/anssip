@@ -10,4 +10,14 @@ Description : Merupakan sebuah alat absensi yang digunakan untuk mengontrol keha
 
 Release v.01 : dd-mm-yyyy
 
-Change Log :
+Guide:
+1. How to add external libraries
+ - Download from external resource like github or another
+ - Extract if the file is zipped or compressed
+ - Make a folder that contains the .h and .cpp of the library you can add example folder as well
+ - Copy the folder in the AbsensiTrui/lib/
+ - Click on the PlatformIO menu Toolbar
+ - Click "Rebuild C/C++ Project Index(Autocomplete and Linter)"
+ - Close the atom then open again
+ - Your library is ready to use
+ - Make sure you know how to use the library don't just copy and paste

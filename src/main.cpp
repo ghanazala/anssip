@@ -1,16 +1,22 @@
 /*
-Developed by Ghana Nazala, Athina Maria, Achmad Kripton, Muhammad Fadli
+Coded by Ghana Nazala, Athina Maria, Achmad Kripton, Muhammad Fadli
 */
 
 #include <Arduino.h>
+#include <Wire.h>
+#include "LiquidCrystal_I2C.h"
 
-void setup() {
-    pinMode(13, OUTPUT);
+// Set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x3F, 16, 2);
+
+void setup()
+{
+	// initialize the LCD
+	lcd.begin();
+	lcd.print("Hello, there world!");
 }
 
-void loop() {
-    digitalWrite(13, HIGH);
-    delay(1000);
-    digitalWrite(13, LOW);
-    delay(500);
+void loop()
+{
+	// Do something here...
 }
