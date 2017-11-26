@@ -34,7 +34,7 @@ void setup()
   nfc.begin();
 	// initialize the LCD
 	lcd.begin();
-	lcd.print("Hello, there!");
+	lcd.print("Hello, test");
 }
 
 void loop()
