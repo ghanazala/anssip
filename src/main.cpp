@@ -10,7 +10,6 @@ Coded by Ghana Nazala, Athina Maria, Achmad Kripton, Muhammad Fadli
 #include "MFRC522.h"
 
 int flag;
-
 //Setup the pin for keypad
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns
