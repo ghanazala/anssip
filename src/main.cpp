@@ -67,7 +67,7 @@ void setup()
   Serial.begin(9600);
   //initialize the RFID
   SPI.begin();
-  nfc.begin();
+  nfc.PCD_Init();
 	// initialize the LCD
 	lcd.begin();
   lcd.setCursor(1, 0);
@@ -75,11 +75,13 @@ void setup()
   lcd.setCursor(6, 1);
   lcd.printstr("TRUI");
 
+
+
 }
 
 void loop()
 {
-  /*
+
   char key = keypad.getKey();
   if (flag==0) {
     pilihMenu();
@@ -87,6 +89,6 @@ void loop()
 	displayMenu(key);
   if (key=='*') {
     flag--;
-  }*/
+  }
 
 }
