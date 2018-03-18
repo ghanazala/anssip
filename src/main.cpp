@@ -8,6 +8,7 @@ Coded by Ghana Nazala, Athina Maria, Achmad Kripton, Muhammad Fadli
 #include "LiquidCrystal_I2C.h"
 #include "Keypad.h"
 #include "MFRC522.h"
+#include "esp8266_anssip.h"
 
 int flag;
 //Setup the pin for keypad
@@ -27,6 +28,8 @@ Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
 MFRC522 nfc(10, A6);
+
+SoftwareSerial esp(A3, A2);
 
 void displayMenu(uint8_t key)
 {
@@ -65,6 +68,7 @@ void pilihMenu()
 void setup()
 {
   Serial.begin(9600);
+  esp.begin(9600);
   //initialize the RFID
   SPI.begin();
   nfc.PCD_Init();
@@ -74,14 +78,11 @@ void setup()
 	lcd.printstr("Selamat Datang");
   lcd.setCursor(6, 1);
   lcd.printstr("TRUI");
-
-
-
 }
 
 void loop()
 {
-
+  /*
   char key = keypad.getKey();
   if (flag==0) {
     pilihMenu();
@@ -89,6 +90,17 @@ void loop()
 	displayMenu(key);
   if (key=='*') {
     flag--;
-  }
+  }*/
+  // read from port 1, send to port 0:
+    if (esp.available()) {
+      int inByte = esp.read();
+      Serial.write(inByte);
+    }
+
+    // read from port 0, send to port 1:
+    if (Serial.available()) {
+      int inByte = Serial.read();
+      esp.write(inByte);
+    }
 
 }
