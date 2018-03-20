@@ -3,3 +3,7 @@
 .clang_complete
 .gcc-flags.json
 .yml
+pcb/*
+!pcb/anssipv2.PcbDoc
+!pcb/anssipv2.PrjPcb
+!pcb/anssipv2.SchDoc
