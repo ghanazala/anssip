@@ -29,7 +29,8 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
 MFRC522 nfc(10, A6);
 
-SoftwareSerial esp(A3, A2);
+// SoftwareSerial esp(A3, A2);
+esp8266 esp(A3, A2);
 
 void displayMenu(uint8_t key)
 {
@@ -74,10 +75,11 @@ void setup()
   nfc.PCD_Init();
 	// initialize the LCD
 	lcd.begin();
-  lcd.setCursor(1, 0);
-	lcd.printstr("Selamat Datang");
-  lcd.setCursor(6, 1);
-  lcd.printstr("TRUI");
+  lcd.setCursor(0, 0);
+	lcd.printstr("Semangat Ujian");
+  lcd.setCursor(0, 1);
+  lcd.printstr("R. Khusniyah");
+  // esp.send_cmd("AT");
 }
 
 void loop()
@@ -91,16 +93,17 @@ void loop()
   if (key=='*') {
     flag--;
   }*/
-  // read from port 1, send to port 0:
-    if (esp.available()) {
-      int inByte = esp.read();
-      Serial.write(inByte);
-    }
 
-    // read from port 0, send to port 1:
-    if (Serial.available()) {
-      int inByte = Serial.read();
-      esp.write(inByte);
-    }
+  // // read from port 1, send to port 0:
+  //   if (esp.available()) {
+  //     int inByte = esp.read();
+  //     Serial.write(inByte);
+  //   }
+  //
+  //   // read from port 0, send to port 1:
+  //   if (Serial.available()) {
+  //     int inByte = Serial.read();
+  //     esp.write(inByte);
+  //   }
 
 }
