@@ -8,7 +8,7 @@ Coded by Ghana Nazala, Athina Maria, Achmad Kripton, Muhammad Fadli
 #include "LiquidCrystal_I2C.h"
 #include "Keypad.h"
 #include "MFRC522.h"
-#include "esp8266_anssip.h"
+#include "SoftwareSerial.h"
 
 int flag;
 //Setup the pin for keypad
@@ -30,7 +30,7 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 MFRC522 nfc(10, A6);
 
 // SoftwareSerial esp(A3, A2);
-esp8266 esp(A3, A2);
+SoftwareSerial esp(A3, A2);
 
 void displayMenu(uint8_t key)
 {
@@ -76,14 +76,15 @@ void setup()
 	// initialize the LCD
 	lcd.begin();
   lcd.setCursor(0, 0);
-	lcd.printstr("Semangat Ujian");
+	lcd.printstr("Front Page");
   lcd.setCursor(0, 1);
-  lcd.printstr("R. Khusniyah");
-  // esp.send_cmd("AT");
+  lcd.printstr("Nyam");
+  esp.print("AT\r");
 }
 
 void loop()
 {
+
   /*
   char key = keypad.getKey();
   if (flag==0) {
@@ -94,16 +95,16 @@ void loop()
     flag--;
   }*/
 
-  // // read from port 1, send to port 0:
-  //   if (esp.available()) {
-  //     int inByte = esp.read();
-  //     Serial.write(inByte);
-  //   }
-  //
-  //   // read from port 0, send to port 1:
-  //   if (Serial.available()) {
-  //     int inByte = Serial.read();
-  //     esp.write(inByte);
-  //   }
+  // read from port 1, send to port 0:
+    if (esp.available()) {
+      int inByte = esp.read();
+      Serial.write(inByte);
+    }
+
+    // read from port 0, send to port 1:
+    if (Serial.available()) {
+      int inByte = Serial.read();
+      esp.write(inByte);
+    }
 
 }
